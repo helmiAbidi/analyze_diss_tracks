@@ -82,8 +82,8 @@ def detect_song_multi_rhymes(song_lines):
     # -> in case you find something add it to a dict: key:line number -> value: multi tuple. 
     multi_rhymes = {}
     for line_index in range(len(song_lines)-1):
-        _,current_line_syllables_ph=create_phonetic_syllable_represtation(song_lines[line_index])
-        _,next_line_syllables_ph=create_phonetic_syllable_represtation(song_lines[line_index+1])
+        _,current_line_syllables_ph=create_phonetic_syllable_representation(song_lines[line_index])
+        _,next_line_syllables_ph=create_phonetic_syllable_representation(song_lines[line_index+1])
         
         multi_rhyme = detect_multi_rhymes(current_line_syllables_ph, next_line_syllables_ph)
         if multi_rhyme is not None:
@@ -106,7 +106,7 @@ def compute_multi_rhyme_analytics(multi_rhymes, song_lenght):
     return number_multi_rhymes, average_len_multi_rhymes, multi_rhyme_score
 
 ####################################### ASSONANCE FUNCTIONS ########################################
-def create_phonetic_syllable_represtation(line):
+def create_phonetic_syllable_representation(line):
     words_list = line.split(" ")
     line_syllables,line_syllables_ph = [],[]
 
@@ -274,7 +274,7 @@ def detect_song_rhyme_schemes(song_lines):
                     #check if it's AABAAB otherwise pass.
                     scheme_AABAAB = are_lists_equal(list_indices, [[0,1,3,4], [2,5]])
                     if scheme_AABAAB:
-                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "AABAAB", song_lines[line_index:line_index+4])
+                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "AABAAB", song_lines[line_index:line_index+6])
                         scheme_AABAAB = False
                         line_index += 6
                         continue
@@ -284,7 +284,7 @@ def detect_song_rhyme_schemes(song_lines):
                     #check if it's AABCCB otherwise pass.
                     scheme_AABCCB = are_lists_equal(list_indices, [[0,1], [2,5], [3,4]])
                     if scheme_AABCCB:
-                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "AABCCB", song_lines[line_index:line_index+4])
+                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "AABCCB", song_lines[line_index:line_index+6])
                         scheme_AABCCB = False
                         line_index += 6
                         continue
@@ -295,7 +295,7 @@ def detect_song_rhyme_schemes(song_lines):
                     #check if it's XXAXXA otherwise pass.
                     scheme_XXAXXA = are_lists_equal(list_indices, [[0],[1],[2,5], [3],[4]]) 
                     if scheme_XXAXXA:
-                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "XXAXXA", song_lines[line_index:line_index+4])
+                        rhyme_schemes = add_to_rhyme_schemes(rhyme_schemes, "XXAXXA", song_lines[line_index:line_index+6])
                         scheme_XXAXXA = False
                         line_index += 6
                         continue
